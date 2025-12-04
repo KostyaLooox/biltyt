@@ -21,13 +21,10 @@ prev.addEventListener('click', () => {
 absurdForm.addEventListener('submit', function(e) {
   e.preventDefault();
   
-  // Используем EmailJS
-  emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-    .then(function() {
-      absurdResponse.innerHTML = '✅ Сообщение отправлено в параллельную реальность!';
-      absurdForm.reset();
-    }, function(error) {
-      absurdResponse.innerHTML = '💥 Ошибка: ' + error.text;
-    });
+// Вверху кода:
+emailjs.init("2hEs2_n6FM0oCgYxB");
 
-});
+// В обработчике формы:
+const serviceID = 'service_43lbqhp';
+const templateID = 'service_43lbqhp';
+
