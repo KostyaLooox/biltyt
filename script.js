@@ -29,4 +29,5 @@ absurdForm.addEventListener('submit', function(e) {
     }, function(error) {
       absurdResponse.innerHTML = '💥 Ошибка: ' + error.text;
     });
+
 });
