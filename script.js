@@ -26,5 +26,6 @@ emailjs.init("2hEs2_n6FM0oCgYxB");
 
 // В обработчике формы:
 const serviceID = 'service_43lbqhp';
-const templateID = 'service_43lbqhp';
+const templateID = 'template_hlrg99i';
+
 
