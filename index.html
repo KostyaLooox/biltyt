@@ -5,6 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>4002Bizarre — визитка</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Добавляем EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Инициализация EmailJS с вашим Public Key
+      emailjs.init("2hEs2_n6FM0oCgYxB");
+    })();
+  </script>
+  <style>
+    .contact-form {
+      margin-top: 40px;
+      padding: 25px;
+      border: 3px dashed #000;
+      background: #f9f9f9;
+      transform: rotate(0.5deg);
+    }
+
+    .contact-form .form-field {
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-family: monospace;
+      color: #000;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed #000;
+      background: #fff;
+      font-family: monospace;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border: 2px solid #000;
+      transform: rotate(1deg);
+      box-shadow: 5px 5px 0 #000;
+    }
+
+    .contact-form .form-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .contact-form button {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px 20px;
+      border: none;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #submitBtn {
+      background: #000;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #submitBtn:hover {
+      background: #333;
+      transform: rotate(2deg) scale(1.05);
+      box-shadow: 5px 5px 0 #ff00ff;
+    }
+
+    #submitBtn:disabled {
+      background: #666;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #clearBtn {
+      background: #fff;
+      color: #000;
+      border: 2px dashed #000 !important;
+    }
+
+    #clearBtn:hover {
+      background: #000;
+      color: #fff;
+      transform: rotate(-2deg);
+      border-style: solid !important;
+    }
+
+    .response-box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px solid #000;
+      display: none;
+      font-family: monospace;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .response-box.success {
+      background: #d4ffd4;
+      border-color: #00aa00;
+      color: #006600;
+      display: block;
+    }
+
+    .response-box.error {
+      background: #ffd4d4;
+      border-color: #aa0000;
+      color: #660000;
+      display: block;
+    }
+
+    .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #fff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .absurd {
+      font-style: italic;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
   <div class="site-wrapper">
@@ -99,137 +254,55 @@
         <p>Телефон: 89565656565</p>
         <p class="absurd">лучше крикни в окно</p>
       </section>
+
+      <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+      <section class="chaotic contact-form">
+        <h2>📨 ШЁПОТ В ВАКУУМ</h2>
+        <p class="absurd">или форма обратной связи, которая на самом деле работает</p>
+        
+        <form id="contactForm">
+          <div class="form-field">
+            <label for="name">ТВОЁ ИМЯ (ИЛИ КЛИЧКА):</label>
+            <input type="text" id="name" name="user_name" required 
+                   placeholder="например: Зеркальный Человек">
+          </div>
+          
+          <div class="form-field">
+            <label for="email">EMAIL (ИЛИ ДЫМОВЫЕ СИГНАЛЫ):</label>
+            <input type="email" id="email" name="user_email" required 
+                   placeholder="you@example.com">
+          </div>
+          
+          <div class="form-field">
+            <label for="message">СООБЩЕНИЕ (ЗЕРКАЛУ):</label>
+            <textarea id="message" name="message" rows="5" required 
+                      placeholder="Напиши что-нибудь абсурдное..."></textarea>
+          </div>
+          
+          <div class="form-buttons">
+            <button type="submit" id="submitBtn">
+              <span id="btnText">🚀 ОТПРАВИТЬ В КОСМОС</span>
+              <span id="btnLoading" class="btn-loading" style="display: none;">
+                <span class="spinner"></span>
+                🌀 ОТПРАВЛЯЕМ...
+              </span>
+            </button>
+            
+            <button type="button" id="clearBtn" class="secondary">
+              🔄 ОЧИСТИТЬ ВСЁ
+            </button>
+          </div>
+          
+          <div id="responseMessage" class="response-box"></div>
+        </form>
+        
+        <p class="absurd" style="margin-top: 20px; font-size: 12px;">
+          Это сообщение полетит через EmailJS прямо на мою почту.
+          <br>Если не долетит — значит, почтовые голуби снова бастуют.
+        </p>
+      </section>
     </main>
-<section class="chaotic contact-form" style="--angle: 5; top: 3600px; left: 100px; width: 350px;">
-  <h2>📨 ШЁПОТ В ВАКУУМ</h2>
-  <p class="absurd">или форма обратной связи</p>
-  
-  <form id="resendForm">
-    <div class="form-field">
-      <label for="name">ТВОЁ ИМЯ (ИЛИ КЛИЧКА):</label>
-      <input type="text" id="name" name="name" required 
-             placeholder="например: Зеркальный Человек">
-    </div>
-    
-    <div class="form-field">
-      <label for="email">EMAIL (ИЛИ ДЫМОВЫЕ СИГНАЛЫ):</label>
-      <input type="email" id="email" name="email" required 
-             placeholder="you@example.com">
-    </div>
-    
-    <div class="form-field">
-      <label for="message">СООБЩЕНИЕ (ЗЕРКАЛУ):</label>
-      <textarea id="message" name="message" rows="5" required 
-                placeholder="Напиши что-нибудь абсурдное..."></textarea>
-    </div>
-    
-    <div class="form-buttons">
-      <button type="submit" id="submitBtn">
-        <span id="btnText">🚀 ОТПРАВИТЬ В КОСМОС</span>
-        <span id="btnLoading" style="display: none;">🌀 ОТПРАВЛЯЕМ...</span>
-      </button>
-      
-      <button type="button" id="clearBtn" class="secondary">
-        🔄 ОЧИСТИТЬ
-      </button>
-    </div>
-    
-    <div id="responseMessage" class="response-box"></div>
-  </form>
-  
-  <p class="absurd" style="margin-top: 20px; font-size: 12px;">
-    Это сообщение полетит через Resend прямо на мою почту.
-    <br>Если не долетит — значит, почтовые голуби снова бастуют.
-  </p>
-</section>
 
-<style>
-.contact-form .form-field {
-  margin-bottom: 20px;
-}
-
-.contact-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-family: monospace;
-  color: #000;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 2px dashed #000;
-  background: #fff;
-  font-family: monospace;
-  font-size: 14px;
-  box-sizing: border-box;
-  transition: all 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border: 2px solid #000;
-  transform: rotate(1deg);
-}
-
-.contact-form .form-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.contact-form button {
-  flex: 1;
-  padding: 15px;
-  border: none;
-  font-family: monospace;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-#submitBtn {
-  background: #000;
-  color: #fff;
-}
-
-#submitBtn:hover {
-  background: #333;
-  transform: rotate(2deg);
-}
-
-#clearBtn {
-  background: #fff;
-  color: #000;
-  border: 2px dashed #000 !important;
-}
-
-#clearBtn:hover {
-  background: #f0f0f0;
-  transform: rotate(-2deg);
-}
-
-.response-box {
-  margin-top: 20px;
-  padding: 15px;
-  border: 2px solid #000;
-  display: none;
-  font-family: monospace;
-}
-
-.response-box.success {
-  background: #d4ffd4;
-  border-color: #00aa00;
-}
-
-.response-box.error {
-  background: #ffd4d4;
-  border-color: #aa0000;
-}
-</style>
     <footer class="chaotic">
       <p>© 4002Bizarre</p>
       <p class="absurd">этот сайт сам себя уничтожит через 404 секунды. Работа сделана за 40 минут с помощью chatgpt</p>
@@ -237,5 +310,105 @@
   </div>
 
   <script src="script.js"></script>
+  
+  <script>
+    // EmailJS конфигурация
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoading = document.getElementById('btnLoading');
+      const clearBtn = document.getElementById('clearBtn');
+      const responseMessage = document.getElementById('responseMessage');
+      
+      // Функция показа сообщения
+      function showMessage(text, isSuccess) {
+        responseMessage.textContent = text;
+        responseMessage.className = `response-box ${isSuccess ? 'success' : 'error'}`;
+        
+        // Автоматическое скрытие через 5 секунд
+        setTimeout(() => {
+          responseMessage.style.display = 'none';
+        }, 5000);
+      }
+      
+      // Отправка формы
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Показываем индикатор загрузки
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-flex';
+        submitBtn.disabled = true;
+        
+        // Собираем данные формы
+        const formData = {
+          user_name: document.getElementById('name').value,
+          user_email: document.getElementById('email').value,
+          message: document.getElementById('message').value,
+          timestamp: new Date().toLocaleString('ru-RU'),
+          site: '4002Bizarre Portfolio'
+        };
+        
+        try {
+          // Отправляем через EmailJS
+          // Замените параметры на свои:
+          // serviceID - ID вашего сервиса в EmailJS
+          // templateID - ID вашего шаблона
+          // publicKey - ваш Public Key (уже инициализирован)
+          
+          const response = await emailjs.send(
+            'service_43lbqhp',    
+            '2hEs2_n6FM0oCgYxB',  
+            formData
+          );
+          
+          console.log('Email отправлен успешно!', response.status, response.text);
+          
+          // Показываем успешное сообщение
+          showMessage('🎉 Сообщение улетело в космос! Я отвечу в ближайшее время.', true);
+          
+          // Очищаем форму
+          contactForm.reset();
+          
+        } catch (error) {
+          console.error('Ошибка отправки:', error);
+          
+          // Показываем сообщение об ошибке
+          showMessage('❌ Ошибка! Почтовые голуби заблудились. Попробуй ещё раз.', false);
+          
+        } finally {
+          // Скрываем индикатор загрузки
+          btnText.style.display = 'inline';
+          btnLoading.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      });
+      
+      // Очистка формы
+      clearBtn.addEventListener('click', function() {
+        contactForm.reset();
+        responseMessage.style.display = 'none';
+        
+        // Анимация очистки
+        clearBtn.textContent = '✅ ОЧИЩЕНО!';
+        setTimeout(() => {
+          clearBtn.textContent = '🔄 ОЧИСТИТЬ ВСЁ';
+        }, 1000);
+      });
+      
+      // Анимация при фокусе на полях формы
+      const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+      formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.style.transform = 'rotate(1deg) scale(1.02)';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.style.transform = 'rotate(0deg) scale(1)';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
