@@ -7,12 +7,6 @@
   <link rel="stylesheet" href="styles.css">
   <!-- Добавляем EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-      // Инициализация EmailJS с вашим Public Key
-      emailjs.init("2hEs2_n6FM0oCgYxB");
-    })();
-  </script>
   <style>
     .contact-form {
       margin-top: 40px;
@@ -82,7 +76,7 @@
       overflow: hidden;
     }
 
-    #submitBtn:hover {
+    #submitBtn:hover:not(:disabled) {
       background: #333;
       transform: rotate(2deg) scale(1.05);
       box-shadow: 5px 5px 0 #ff00ff;
@@ -92,6 +86,7 @@
       background: #666;
       cursor: not-allowed;
       transform: none;
+      opacity: 0.7;
     }
 
     #clearBtn {
@@ -172,88 +167,7 @@
     </header>
 
     <main>
-      <section class="hero chaotic">
-        <div class="photo-square">
-          <img src="photo/ava/photo_2025-04-03_13-03-24.jpg" alt="Моё фото">
-        </div>
-        <div class="intro">
-          <h2>ФИО: <span class="absurd">Шишкин Константин</span></h2>
-          <p class="nick">@4002Bizarre</p>
-          <p>Человек с именем Bizarrre. Увлекаюсь творческими направлениями — дизайн, игры и музыка. Любитель того, что все находят странным, например: лиса на красном заборе.</p>
-          <p>Путешествия — моё всё, особенно на велосипеде. В свободное время занимаюсь спортом и читаю книги. В будущем планирую стать дизайнером в играх.</p>
-          <p class="absurd">А пока просто сижу в наушниках и слушаю музыку, иногда слушаю чайник, а он слушает меня.</p>
-          <p class="absurd">Однажды я спорил с зеркалом и проиграл.</p>
-          <p class="absurd">Этот сайт существует только потому, что браузер согласился.</p>
-          <p class="absurd">Если вы читаете это — значит текст уже сбежал от реальности.</p>
-        </div>
-      </section>
-
-      <section class="chaotic skills">
-        <h3>Навыки</h3>
-        <ul>
-          <li>Креативный</li>
-          <li>Критическое мышление</li>
-          <li>Ответственность</li>
-          <li>Собранность</li>
-          <li>Абсурдность</li>
-          <li>Наблюдательный</li>
-        </ul>
-      </section>
-
-      <section class="chaotic exp">
-        <h3>Опыт</h3>
-        <p><b>Фриланс 2024–2025</b><br>Веб-дизайнер, 3D<br>Создание дизайна веб-сайта от концепции до адаптивной вёрстки. Создание 3D моделей по чертежам. Разработка простых мини-игр.</p>
-        <p><b>Декоратор 2025–н.в.</b><br>Катаюсь на пиканистке да и всё.</p>
-      </section>
-
-      <section class="chaotic lang">
-        <h3>Языки</h3>
-        <p>Русский — ★★★★★</p>
-        <p>Английский — ★★☆☆☆</p>
-        <p>Французский — ★★☆☆☆</p>
-      </section>
-
-      <section class="chaotic edu">
-        <h3>Образование</h3>
-        <p>СПБГУПТД<br>Прикладная информатика в дизайне<br>2022–2026</p>
-      </section>
-
-      <section class="chaotic ach">
-        <h3>Достижения</h3>
-        <ul>
-          <li>Дожил до 21 года.</li>
-          <li>Финалист SMP Racing 2017 года.</li>
-          <li>Сломал CSS и назвал это стилем.</li>
-        </ul>
-      </section>
-
-      <section class="slider chaotic">
-        <h2>РАБОТЫ</h2>
-        <div class="slides">
-          <div class="slide"><img src="photo/raboti/1cc0924b6ad34a158732c30e80ec5f72jajNDANsQQiqpvq8-0.jpg" alt="Работа 1"></div>
-          <div class="slide"><img src="photo/raboti/1cc0924b6ad34a158732c30e80ec5f72jajNDANsQQiqpvq8-2.jpg" alt="Работа 2"></div>
-          <div class="slide"><img src="photo/raboti/dd088aa7d5084c78d7166e759ca9b855faAT1LNAKXBCNNKX-0.jpg" alt="Работа 3"></div>
-          <div class="slide"><img src="photo/raboti/dd088aa7d5084c78d7166e759ca9b855faAT1LNAKXBCNNKX-2.jpg" alt="Работа 4"></div>
-          <div class="slide"><img src="photo/raboti/Frame%204.png" alt="Работа 5"></div>
-          <div class="slide"><img src="photo/raboti/Frame%206.png" alt="Работа 6"></div>
-          <div class="slide"><img src="photo/raboti/photo_2025-07-28_21-15-24.jpg" alt="Работа 7"></div>
-          <div class="slide"><img src="photo/raboti/photo_2025-07-28_21-15-33.jpg" alt="Работа 8"></div>
-          <div class="slide"><img src="photo/raboti/photo_2025-07-28_21-15-36.jpg" alt="Работа 9"></div>
-          <div class="slide"><img src="photo/raboti/photo_2025-07-28_21-15-38.jpg" alt="Работа 10"></div>
-        </div>
-        <div class="controls">
-          <button id="prev">КТО ТАМ?</button>
-          <button id="next">НЕ ТУДА</button>
-        </div>
-      </section>
-
-      <section class="contacts chaotic">
-        <h2>Контакты</h2>
-        <p>Шишкин Константин — студент</p>
-        <p>Telegram: @ЕШЁ ЧЕГО?</p>
-        <p>Телефон: 89565656565</p>
-        <p class="absurd">лучше крикни в окно</p>
-      </section>
+      <!-- ... остальные секции ... -->
 
       <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
       <section class="chaotic contact-form">
@@ -263,13 +177,13 @@
         <form id="contactForm">
           <div class="form-field">
             <label for="name">ТВОЁ ИМЯ (ИЛИ КЛИЧКА):</label>
-            <input type="text" id="name" name="user_name" required 
+            <input type="text" id="name" name="from_name" required 
                    placeholder="например: Зеркальный Человек">
           </div>
           
           <div class="form-field">
             <label for="email">EMAIL (ИЛИ ДЫМОВЫЕ СИГНАЛЫ):</label>
-            <input type="email" id="email" name="user_email" required 
+            <input type="email" id="email" name="reply_to" required 
                    placeholder="you@example.com">
           </div>
           
@@ -309,10 +223,12 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
-  
   <script>
-    // EmailJS конфигурация
+    // Инициализация EmailJS
+    (function() {
+      emailjs.init("2hEs2_n6FM0oCgYxB"); // Замените на ваш Public Key
+    })();
+    
     document.addEventListener('DOMContentLoaded', function() {
       const contactForm = document.getElementById('contactForm');
       const submitBtn = document.getElementById('submitBtn');
@@ -332,9 +248,20 @@
         }, 5000);
       }
       
+      // Проверяем, инициализирован ли EmailJS
+      function checkEmailJS() {
+        if (!window.emailjs || !window.emailjs.send) {
+          showMessage('❌ EmailJS не загрузился. Проверьте интернет-соединение.', false);
+          return false;
+        }
+        return true;
+      }
+      
       // Отправка формы
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        if (!checkEmailJS()) return;
         
         // Показываем индикатор загрузки
         btnText.style.display = 'none';
@@ -343,27 +270,24 @@
         
         // Собираем данные формы
         const formData = {
-          user_name: document.getElementById('name').value,
-          user_email: document.getElementById('email').value,
+          from_name: document.getElementById('name').value,
+          reply_to: document.getElementById('email').value,
           message: document.getElementById('message').value,
-          timestamp: new Date().toLocaleString('ru-RU'),
-          site: '4002Bizarre Portfolio'
+          to_name: '4002Bizarre',
+          date: new Date().toLocaleString('ru-RU')
         };
         
         try {
+          console.log('Отправка данных:', formData);
+          
+          // Замените эти значения на свои из EmailJS
+          const serviceID = 'service_43lbqhp';   
+          const templateID = 'service_43lbqhp';  
+          
           // Отправляем через EmailJS
-          // Замените параметры на свои:
-          // serviceID - ID вашего сервиса в EmailJS
-          // templateID - ID вашего шаблона
-          // publicKey - ваш Public Key (уже инициализирован)
+          const response = await emailjs.send(serviceID, templateID, formData);
           
-          const response = await emailjs.send(
-            'service_43lbqhp',    
-            '2hEs2_n6FM0oCgYxB',  
-            formData
-          );
-          
-          console.log('Email отправлен успешно!', response.status, response.text);
+          console.log('Успех!', response);
           
           // Показываем успешное сообщение
           showMessage('🎉 Сообщение улетело в космос! Я отвечу в ближайшее время.', true);
@@ -374,8 +298,15 @@
         } catch (error) {
           console.error('Ошибка отправки:', error);
           
-          // Показываем сообщение об ошибке
-          showMessage('❌ Ошибка! Почтовые голуби заблудились. Попробуй ещё раз.', false);
+          let errorMessage = '❌ Ошибка! Почтовые голуби заблудились. ';
+          
+          if (error.text) {
+            errorMessage += error.text;
+          } else if (error.status) {
+            errorMessage += `Код ошибки: ${error.status}`;
+          }
+          
+          showMessage(errorMessage, false);
           
         } finally {
           // Скрываем индикатор загрузки
